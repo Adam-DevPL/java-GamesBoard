@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class GamesBoardTest {
 
     private GamesBoard board;
@@ -21,8 +19,7 @@ class GamesBoardTest {
         board.startGame("Chess");
 
         //then
-        Assertions.assertTrue(board.getGamesBoard().containsKey("Chess"));
-        Assertions.assertTrue(board.getGamesBoard().get("Chess").getStatus());
+        Assertions.assertTrue(board.getStartedGames().containsKey("Chess"));
     }
 
     @Test
@@ -41,11 +38,12 @@ class GamesBoardTest {
         board.finishGame("Chess");
 
         //then
-        Assertions.assertFalse(board.getGamesBoard().get("Chess").getStatus());
+        Assertions.assertTrue(board.getFinishedGames().containsKey("Chess"));
     }
 
     @Test
     public void testFinishGame_NotStarted() {
+
 
         //then
         Assertions.assertThrowsExactly(IllegalStateException.class, () -> board.finishGame("Football"), "Game Football not started");
@@ -60,7 +58,7 @@ class GamesBoardTest {
         board.updateGameScore("Chess", 10);
 
         //then
-        Assertions.assertEquals(10, board.getGamesBoard().get("Chess").getScore());
+        Assertions.assertEquals(10, board.getStartedGames().get("Chess").getScore());
     }
 
     @Test

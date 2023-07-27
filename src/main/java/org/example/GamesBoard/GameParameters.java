@@ -13,8 +13,4 @@ public class GameParameters {
     public int getScore() {
         return score;
     }
-
-    public Boolean getStatus() {
-        return status;
-    }
 }
